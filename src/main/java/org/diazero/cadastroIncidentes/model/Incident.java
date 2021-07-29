@@ -1,7 +1,8 @@
 package org.diazero.cadastroIncidentes.model;
 
-import java.util.Date;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,13 +36,12 @@ public class Incident {
 	private String description;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date creatAt = new java.sql.Date(System.currentTimeMillis());
+	private Date createdAt = new java.sql.Date(System.currentTimeMillis());
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updateAt = new java.sql.Date(System.currentTimeMillis());
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date closedAt = new java.sql.Date(System.currentTimeMillis());
+	private LocalDateTime updatedAt;
+	
+	private LocalDateTime closedAt;
 
 	@ManyToOne
 	@JsonIgnoreProperties ("usuario")
@@ -72,27 +72,45 @@ public class Incident {
 	}
 
 	public Date getCreatAt() {
-		return creatAt;
+		return createdAt;
 	}
 
 	public void setCreatAt(Date creatAt) {
-		this.creatAt = creatAt;
+		this.createdAt = creatAt;
 	}
 
-	public Date getUpdate() {
-		return updateAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setUpdate(Date update) {
-		this.updateAt = update;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public Date getClosed() {
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	public LocalDateTime getClosedAt() {
 		return closedAt;
 	}
 
-	public void setClosed(Date closed) {
-		this.closedAt = closed;
-	};
+	public void setClosedAt(LocalDateTime closedAt) {
+		this.closedAt = closedAt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
 
 }
